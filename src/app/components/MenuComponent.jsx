@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { SlArrowRight } from "react-icons/sl";
@@ -10,10 +10,6 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 
 function MenuComponent({ activeTab, setActiveTab }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const changeToDiscussion = () => {
-    setIsMenuOpen(!isMenuOpen);
-    setActiveTab("discussion");
-  };
   return (
     <>
       <div
@@ -32,16 +28,19 @@ function MenuComponent({ activeTab, setActiveTab }) {
           </div>
 
           <hr />
-          <div className="flex flex-1  flex-col items-start gap-5 text-white">
+          <div className="flex flex-1  flex-col items-start  text-white">
             <div
               className={` p-2 flex hover w-full ${
                 activeTab === "discussion" ? "bg-[#14142f]" : ""
               }`}
-              onClick={changeToDiscussion()}
+              onClick={() => {
+                setIsMenuOpen(false);
+                setActiveTab("discussion");
+              }}
             >
               <BiMessageDetail size={20} />
               <button className="pl-3 ">Discussion Fourm</button>
-              {/* <MdOutlineArrowDropDown size={20} className="" /> */}
+              <MdOutlineArrowDropDown className="text-2xl ml-auto" />
             </div>
             <div
               className={`p-2 flex items-center w-full ${
@@ -55,12 +54,12 @@ function MenuComponent({ activeTab, setActiveTab }) {
               <ImCoinDollar size={20} className="" />
               <button className="pl-3">Market Stories</button>
             </div>
-            <button className="pl-3">Sentiment</button>
-            <button className="pl-3">Market</button>
-            <button className="pl-3">Sector</button>
-            <button className="pl-3">Wishlist</button>
-            <button className="pl-3">Events</button>
-            <button className="pl-3">News/Interview</button>
+            <button className="pl-3 p-2">Sentiment</button>
+            <button className="pl-3 p-2">Market</button>
+            <button className="pl-3 p-2">Sector</button>
+            <button className="pl-3 p-2">Wishlist</button>
+            <button className="pl-3 p-2">Events</button>
+            <button className="pl-3 p-2">News/Interview</button>
           </div>
         </div>
 
